@@ -1,0 +1,12 @@
+version: '3'
+services:
+  rsyslog:
+    container_name: rsyslog
+    image: voxxit/rsyslog
+    ports:
+      - "514:514"
+      - "514:514/udp"
+    volumes:
+      - "./log:/var/log"
+      - "./config/:/etc/rsyslog.d"
+
