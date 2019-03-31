@@ -1,6 +1,7 @@
 version: '3'
 services:
   rsyslog:
+    restart: always
     container_name: rsyslog
     image: voxxit/rsyslog
     ports:
