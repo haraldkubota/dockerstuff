@@ -1,0 +1,29 @@
+version: '3'
+services:
+  elk:
+    restart: always
+    container_name: elk
+    image: sebp/elk
+    environment:
+      - LOGSTASH_START=0
+      - TZ=Asia/Tokyo
+    expose:
+      - 9200
+      - 5601
+      - 5044
+    volumes:
+      - "./data:/var/lib/elasticsearch"
+  haproxy:
+    restart: always
+    container_name: haproxy
+    image: haproxy:2.1
+    ports:
+      - 1936:1936
+      - 9200:9200
+      - 9280:9280
+      - 5601:5601
+      - 5680:5680
+
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+
